@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>电一闪的博客</title>
+  <meta name="author" content="雷一鸣-Jerry">
+
+  
+  <meta name="description" content="开发背景: 　　前段时间因工作需要，写了一个图标管理控件。日常开发中可能类似的需求不少，于是做成可复用的代码库，当作编写可复用控件的开端。 　　　　　　　　　　　　　　　　　　　　　　　　　　　－－题记 　　这个图标管理控件我为其命名为DraggableView，意为可拖动视图， &hellip;">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://showmylym.github.io">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="电一闪的博客" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+<!--注释掉在线获取jquery的语句，为了在国内稳定打开页面-->
+  <!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"--><!--/script-->
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!--这两个资源URL在国内访问不稳定，因此从本地调用 -->
+<!-- link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,700' rel='stylesheet' type='text/css' -->
+<!-- link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' -->
+
+  <link href="/stylesheets/noto_serif.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/open_sans.css" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">电一闪的博客</a></h1>
+  
+    <h2>沉默是金</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  
+  
+</ul>
+
+<ul class="main-navigation">
+  <li><a href="/">最近博客</a></li>
+  <li><a href="/blog/archives">博客列表</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/06/tu-biao-guan-li-kong-jian-de-shi-xian-lei-si-yu-ioszhu-ye-de-xiao-guo/">图标管理控件的实现-类似于iOS主页的效果</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-06T08:22:12+08:00" pubdate data-updated="true"></time>
+        
+           | <a href="/blog/2015/01/06/tu-biao-guan-li-kong-jian-de-shi-xian-lei-si-yu-ioszhu-ye-de-xiao-guo/#disqus_thread"
+             data-disqus-identifier="http://showmylym.github.io/blog/2015/01/06/tu-biao-guan-li-kong-jian-de-shi-xian-lei-si-yu-ioszhu-ye-de-xiao-guo/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>开发背景:</h3>
+
+<p>　　前段时间因工作需要，写了一个图标管理控件。日常开发中可能类似的需求不少，于是做成可复用的代码库，当作编写可复用控件的开端。  <br/>
+　　　　　　　　　　　　　　　　　　　　　　　　　　　－－题记  <br/>
+　　这个图标管理控件我为其命名为DraggableView，意为可拖动视图，它继承于UIView，与UITableView类似，它有自己的cell，cell中实现长按拖动(LongPressGesture)、点击选择(TapGesture)，以及删除功能。Github代码库地址：<br/>
+　　<a href="https://github.com/showmylym/LYMDraggableView">https://github.com/showmylym/LYMDraggableView</a>  <br/>
+　　<br/>
+　　<br/>
+　　以下是控件演示：  <br/>
+　　<embed src="http://player.youku.com/player.php/Type/Folder/Fid/23308555/Ob/1/sid/XODY0NTg4NTAw/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed>  <br/>
+　　纵观iOS App市场，有类似实现效果的应用不少，如下截图：</p>
+
+<h4><em>优酷视频iPad客户端</em>管理离线视频</h4>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-1.PNG" title="图片2-1" alt="图片2-1" width="100%"/></p>
+
+<h4><em>微信</em>讨论组增删人员</h4>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-2.PNG" title="图片2-2" alt="图片2-2" width="100%"/></p>
+
+<h4><em>有信</em>收藏栏</h4>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-3.PNG" title="图片2-3" alt="图片2-3" width="100%"/></p>
+
+<h4><em>有信</em>照片墙</h4>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-4.PNG" title="图片2-4" alt="图片2-4" width="100%"/></p>
+
+<h3>大致工作流程为：</h3>
+
+<p>　　1、点击可选择，类似于UITableView的didSelect方法。  <br/>
+　　2、长按一个cell，触发编辑状态。编辑状态的cell将放大显示，所有图标将以角度3°轻微旋转，表示当前的拖动编辑状态。处于编辑状态的cell可以被删除、被拖动重排序，但不能触发点击回调，两种操作都有回调暴露，在代理对象中编写具体实现。  <br/>
+　　3、若数据源层级中添加了新的cell，只需[draggableView reloadData]调用一次即可刷新UI。刷新完成时，draggableView向代理对象发送didResizeWithFrame消息，代理实现可根据此回调适时改变视图中UIScrollView的contentSize，适应新内容大小。</p>
+
+<h4>下图为正常状态下各个部分的有效区域：</h4>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-5.png" title="图片2-5" alt="图片2-5" width="100%"/></p>
+
+<h4>下图为编辑状态下各个部分的有效区域：</h4>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-6.png" title="图片2-6" alt="图片2-6" width="100%"/></p>
+
+<h3>大致使用流程为：</h3>
+
+<h4>1、初始化：</h4>
+
+<p>　　<code>self.mainDraggableView = [[LYMDraggableView alloc] initWithFrame:CGRectMake(0.0, 0.0, screenWidth, draggableViewHeight) layoutType:LYMDraggableViewLayoutByColumnNum horizontalMargin:0.0 verticalMargin:0.0 vSpace:4.0 maxColumn:4.0 cornerRadius:nil];</code>  <br/>
+　　<code>self.mainDraggableView.delegate = self;</code>  <br/>
+　　<code>self.mainDraggableView.dataSource = self;</code>  <br/>
+　　<code>self.mainDraggableView.backgroundColor = [UIColor whiteColor];</code>  <br/>
+　　<code>[self.mainScrollView addSubview:self.mainDraggableView];</code>  <br/>
+　　这里有个技术细节问题。对UIView及其子类初始化时，如果调用  <br/>
+　　<code>[[UIView alloc] initWithFrame:rect]</code>  <br/>
+　　方法，那么rect的宽或高都最好不要为0，可根据已有数据源，调用DraggableView中的类方法  <br/>
+　　<code>+ (CGFloat)heightOfDraggableViewFromVMargin:(CGFloat)vmargin cellHeight:(CGFloat)cellHeight vSpace:(CGFloat)vSpace itemsCount:(NSUInteger)itemsCount;
+</code>  <br/>
+　　得到预计高度。实际情况证明，rect的宽高值有一项为0时，界面中的所有添加在此容器view中的subview，其autoresizing机制将出现异常（autolayout不知，没试过，类推情况应该类似）。  <br/>
+　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-7.jpg" title="图片2-7" alt="图片2-7" width="100%"/>  <br/>
+　　如上图2-7，根据官方文档里对其中一种autoresizing类型——UIViewAutoresizingFlexibleLeftMargin的描述原文：The distance between the view’s left edge and the superview’s left edge grows or shrinks as needed.  <br/>
+　　意为：view的左边与其superView的左边距离，可根据实际情况动态增大或减小。也就是说，如果启用此种autoresizing类型，view与superView之间的右边距是保持不变的。因此，若supeView没有设置正确的初始rect（例如width为0），view将无法自动管理与superView之间的左边距。  <br/>
+　　在DraggableView的初始化方法中，会检测height是否为0。若为0，则自动将其赋值为1。  <br/>
+　　下图2-8为起初编写DraggableCell初始化方法时未给予titleLabel合法height（height > 0）的结果——label上的text无故消失。  <br/>
+　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-8.png" title="图片2-8" alt="图片2-8" width="100%"/></p>
+
+<h4>２、实现数据源方法</h4>
+
+<p>　　<code>- (NSInteger)numberOfCellsInDraggableView:(LYMDraggableView *)draggableView; // 返回cell的个数</code>  <br/>
+　　<code>- (CGSize)cellContentViewSizeInDraggableView:(LYMDraggableView *)draggableView; // 返回cell的contentSize，Demo中将宽高值都乘以了屏幕比例系数，以适配大屏</code>  <br/>
+　　<code>- (CGSize)cellCornerBtnSizeInDraggableView:(LYMDraggableView *)draggableView; // 返回cell的边角按钮size，用于在编辑状态时显示删除按钮，可设定位置左上或右上，同样乘以屏幕比例系数</code>  <br/>
+　　<code>- (CGSize)cellSizeInDraggableView:(LYMDraggableView *)draggableView; // 返回cell自身的size，宽度 = contentSize.width + 2 * cornerBtnSize.witdh / 2.0, 高度 = contentSize.height + cornerBtnSize.witdh / 2.0. 有效区域见上图2-5</code>  <br/>
+　　<code>- (LYMDraggableViewCell *)draggableView:(LYMDraggableView *)draggableView cellForIndex:(NSUInteger)index; // 使用DraggableViewCell的初始化方法创建cell，cell不能像UITableViewCell那样复用，详情参照demo</code>  <br/>
+　　<code>- (void)draggableView:(LYMDraggableView *)draggableView didSelectCellAtIndex:(NSUInteger)index; // 普通状态下选中一个项。例如作为查看item对应的详细信息的入口</code>  <br/>
+　　<code>- (void)draggableView:(LYMDraggableView *)draggableView didResizeWithFrame:(CGRect)frame; // 每次调用DraggableView的实例方法[instance reloadData]刷新完自身frame后，利用此回调可适时调整其superView容器的contentSize。例如draggableView所在UIScollView或UITableViewCell的contentSize</code>  <br/>
+　　<code>- (void)draggableView:(LYMDraggableView *)draggableView cornerBtnPressedAtIndex:(NSUInteger)index; //边角按钮点击回调。可用作删除操作确认，或其他自定义功能。</code>  <br/>
+　　<code>- (void)draggableView:(LYMDraggableView *)draggableView didMoveCellFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex; // 移动了一个cell，从fromIndex移动到toIndex。</code>  <br/>
+　　<code>- (BOOL)draggableView:(LYMDraggableView *)draggableView canMoveAtIndex:(NSUInteger)index; // 判断某个index的cell，是否可以被移动</code>  <br/>
+　　<code>- (BOOL)draggableView:(LYMDraggableView *)draggableView canShakeWhenEditingAtIndex:(NSUInteger)index; // 判断某个index的cell，是否可以使用抖动动画表示编辑状态</code>  <br/>
+　　<code>- (BOOL)draggableView:(LYMDraggableView *)draggableView canEditingAtIndex:(NSUInteger)index; //判断某个index的cell，是否可以切换为编辑状态</code>  <br/>
+　　上面这三个can&hellip;方法在控制首尾两个cell时没有问题，但对于其他位置的cell控制不是很方便。首次很好，被重新排序后需要reloadData才能重新计算各个cell的正确index。详情参见Demo中的<code>[ didMoveCellFromIndex]</code>协议方法实现。  <br/>
+　　<code>- (CGFloat)draggableView:(LYMDraggableView *)draggableView cellEditingScaleUpFactorAtIndex:(NSUInteger)index; // 将长按cell的放大系数以回调方式暴露出来</code>  <br/>
+　　<code>- (void)draggableViewBeginEditing:(LYMDraggableView *)draggableView; // draggableView进入编辑状态回调</code>  <br/>
+　　<code>- (void)draggableViewEndEditing:(LYMDraggableView *)draggableView; // draggableView结束编辑状态回调</code></p>
+
+<h3>最后，再简单说说几个关键算法的处理逻辑：</h3>
+
+<h4>1、整体布局。</h4>
+
+<p>　　布局基于320.0宽度的1x屏幕，640.0的2x屏可自动x2，但iPhone 6、iPhone6 Plus无法最佳自动适配，因此会在关键的contentSize后乘以屏比系数，该系数值为：UIScreenBoundsWidth/320.0。</p>
+
+<h4>2、图标排列。</h4>
+
+<p>　　最初设计包含了两种排列类型，一种LYMDraggableViewLayoutByCellSize，保持cell的size不变，cell之间的列间距自适应。如果有足够空间，在当前行再插入一个cell；另一种为LYMDraggableViewLayoutByColumnNum，保持cell的size相对屏幕宽度成比例放大或缩小，列数不变，cell之间的列间距按照剩余空间自适应。边距仍然保持不变，使用初始值。  <br/>
+　　第一种没有实现，目前代码中使用的是第二种。如果以后有需要，不排除实现第一种排列类型。</p>
+
+<h4>3、判定移动。</h4>
+
+<p>　　水平方向上，取被拖动cell水平中心点的坐标x，长按手势触发后在每次手势的didMove回调中检查x的值是否在原来某个cell的区域内。如果在，则立即插入到此位置。因此过程计算量较大，特别需要注意将数据计算与界面绘制独立开，保证代码思路清晰，后续可维护。</p>
+
+<h4>4、界面绘制逻辑。</h4>
+
+<p>　　用了些基本算法，先算出总共几行几列，之后依次由外至内循环，从行开始，逐列计算。算完一个cell，将其frame数据作为下一个cell的frame计算依据，全程使用相对坐标。详细过程参照draggableView中的resetLayout方法。</p>
+
+<h3>整体感悟：</h3>
+
+<h4>1、业务逻辑与功能实现分离。</h4>
+
+<p>　　这点非常重要，分离的好，可重用度高，可快速应用在新的场景中，节约开发成本。</p>
+
+<h4>2、数据计算与界面绘制相互独立。</h4>
+
+<p>　　这点显著益处是维护耗时短，有问题易暴露、易定位。试想数据计算与界面绘制夹杂在一处，写代码时图了方便，过几天自己看自己写的代码也得花上好些时间才能理清头绪，稍有不慎修改界面绘制却误改了数据计算代码，离完成之日遥遥无期。同时，它还引出第3个问题。</p>
+
+<h4>3、站在陌生人角度审视自己的代码。</h4>
+
+<h5>具体做法是：</h5>
+
+<h5>1、关键位置写好注释。必要时在方法声明处使用VVDocumenter插件生成Xcode注释，效果如下图2-9、2-10.</h5>
+
+<h6>注释的样子</h6>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-9.png" title="图片2-9" alt="图片2-9" width="100%"/></p>
+
+<h6>快速查看方法说明的样子</h6>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-10.png" title="图片2-10" alt="图片2-10" width="100%"/></p>
+
+<h5>2、利用XCode的pragma分块特性提高定位效率</h5>
+
+<p>　　<img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/2/2-11.png" title="图片2-11" alt="图片2-11" width="100%"/>  <br/>
+　　客观上说，程序员不可能一直做一个功能，轮岗才能调动员工工作积极性。在创业团队，第一波带领团队开发产品的开发人员，日后一定会有更多产品需要充当前锋。同样地，对于中间介入开发的开发人员来说，无论出于职业道德在今后换阵营交接时快速且复杂度低，还是平日请个一星期病假事假由其他人暂时顶替开发，站在对方的角度编写代码，都是百利而无一害的。（这是在有信学到的^__^）。  <br/>
+　　去年听闻的一句名言：<strong>要假想以后维护自己代码的人，是知道自己住处地址的精神病，那么写代码还会那么随意么？</strong></p>
+
+<h3>后记：</h3>
+
+<p>　　距离上一篇博客发布已一个月有余，其实积攒了很多材料，但真的想把这一篇写好，写到自己满意的程度再发出来。
+　　</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti/">GithubPage页面国内打开缓慢的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-29T12:23:23+08:00" pubdate data-updated="true"></time>
+        
+           | <a href="/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti/#disqus_thread"
+             data-disqus-identifier="http://showmylym.github.io/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>　　其实早在两年前，我在<a href="http://www.cnblogs.com/showmylym" title="博客园">博客园</a>创建过个人博客，零零散散写了些很业余的东西，没有系统性地写，与编程也没有太大关系，没能坚持。在最近的工作中，有了分享意识，并且发现一个知识点如果能够给别人讲懂，知识点会融入进自己的知识体系，理解程度会有质的变化。因此决定重新做一个专业的博客，一来给自己总结，二来可能会帮助到其他人。虽然国内技术博客站不少，但大多都掺杂太多广告，不够纯粹，考虑到平时频繁用到github找代码，遂决定在github上建博客，与自己的开源代码结合。这次一定可以坚持下去:)<br/>
+　　不过一上来就碰到国内打开博客页面慢的问题，且翻墙时灵时不灵。跟了一下页面加载的过程，发现首页有四个链接加载超时，如下图1-1。<br/>
+<img src="/images/1/1-1.png" title="图1-1" alt="图1-1" /><br/>
+图1-1<br/>
+　　Copy出来，四个URL如下：<br/>
+　　<code>https://fonts.googleapis.com/css?family=Open+Sans:400,700</code><br/>
+　　<code>http://platform.twitter.com/widgets.js</code><br/>
+　　<code>http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</code><br/>
+　　<code>https://fonts.googleapis.com/css?family=Noto+Serif:400,700</code><br/>
+　　首先关掉twitter账户关联。按照<a href="http://wenku.baidu.com/view/8a146ba2d0d233d4b14e69ae.html" title="HTML页面的加载过程">HTML页面的加载过程</a>，浏览器首先解析页面结构，再加载外部CSS和script。如果在<code>&lt;head&gt;</code>标签里碰到<code>&lt;script&gt;</code>，则解析页面结构时就会加载脚本。此时若网络延迟较大，会出现长时间的白屏。猜测首页打开缓慢应当是这个原因，因此参考<a href="http://blog.csdn.net/chang_yuan_2011/article/details/7881606" title="不同javascript加载方式对页面性能的影响">不同javascript加载方式对页面性能的影响</a>，首先尝试将script放在body结尾前执行。<br/>
+　　打开octopress博客源代码的source目录，使用grep命令搜索内容中带有&#8221;script&#8221;的文件(i为忽略大小写，r为递归查找，l为以文件列表形式显示)。<br/>
+　　<code>grep -irl script | grep htm</code><br/>
+　　搜索结果如下图1-2。<br/>
+<img src="/images/1/1-2.png" title="图1-2" alt="图1-2" /><br/>
+图1-2<br/>
+　　文件有点多，不好找。考虑过后，决定直接搜索图1-1中标红的那几个URL。搜索命令分别为：<br/>
+　　<code>grep -irl jquery | grep htm</code> <br/>
+　　<code>grep -irl https://fonts.googleapis.com/css?family=Noto+Serif:400,700 | grep htm</code> <br/>
+　　<code>grep -irl https://fonts.googleapis.com/css?family=Open+Sans:400,700 | grep htm</code> <br/>
+　　根据结果了解到，调用这三条URL的执行语句，在<em>includes/head.html和</em>includes/custom/head.html中，对其做如下图1-3和图1-4的修改。<br/>
+<img src="/images/1/1-3.png" title="图1-3" alt="图1-3" /><br/>
+图1-3<br/>
+<img src="/images/1/1-4.png" title="图1-4" alt="图1-4" /><br/>
+图1-4<br/>
+　　修改完毕刷新页面。页面显示很快，但在Chrome的网络控制台上，显示还有4个URL访问缓慢，如下图1-5。<br/>
+<img src="/images/1/1-5.png" title="图1-5" alt="图1-5" /><br/>
+图1-5<br/>
+　　继续搜索关键字&#8221;gstatic&#8221;<br/>
+　　<code>grep -irl gstatic</code><br/>
+　　搜索结果如下图1-6<br/>
+<img src="/images/1/1-6.png" title="图1-6" alt="图1-6" /><br/>
+图1-6<br/>
+　　打开这两个刚刚创建的css样式文件，很明显可以看到其引用了不少gstatic.com上存储的woff2格式的web开放字体文件。目前还没发觉其对页面显示有何影响，花点时间将它们定位到本地吧。<br/>
+　　哈哈，问题到此已解决，打开首页显示速度快多了:)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/25/di-yi-pian-the-first-one/">第一篇-the First One</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-25T22:46:27+08:00" pubdate data-updated="true"></time>
+        
+           | <a href="/blog/2014/11/25/di-yi-pian-the-first-one/#disqus_thread"
+             data-disqus-identifier="http://showmylym.github.io/blog/2014/11/25/di-yi-pian-the-first-one/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我的第一篇博客，预示着从此开始记录技术积累点滴。
+今后将把遇到的问题以及开发心得贴出来，供自己总结，也为后来者提供参考。</p>
+
+<p>This is my first blog, and it means recording my developing experience from now on. In the future, I&rsquo;ll post questions and answers encountered, as summurized words for newcomers.</p>
+
+<p>There&rsquo;s a lightening future, and I will always insist on myself.
+<img src="/images/bg.png" alt="背景图片" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">查看博客列表</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+   
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:showmylym.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Google一下(可能被墙)"/>
+  </fieldset>
+</form>
+  
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/06/tu-biao-guan-li-kong-jian-de-shi-xian-lei-si-yu-ioszhu-ye-de-xiao-guo/">图标管理控件的实现-类似于iOS主页的效果</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti/">GithubPage页面国内打开缓慢的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/di-yi-pian-the-first-one/">第一篇-the First One</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+<section>
+  <h1>关于我</h1>
+  <p>雷一鸣，英文名Jerry。1990年9月生人，2007年考入南京工程学院，就读计算机应用专业。2011年毕业后加入南京新迪杰软件科技有限公司，完成冬冬出行帮手系列应用iPad、iPhone版本（现已下架）。2013年5月加入深圳四方精创股份有限公司，悲情的是刚刚成立的移动开发项目组全年没有接到一单像样的项目。2014年3月加入深圳有信网络技术有限公司，主要负责iOS客户端的功能开发，产品为手机网络电话“有信”。现在正努力朝着新的方向前进——学习技术、分享技术，期望有朝一日开发一款能改变人们生活习惯的应用。</p>
+</section>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - 雷一鸣-Jerry -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'showmylym';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {  
+  var stickyNavTop = $('nav').offset().top;  
+    
+  var stickyNav = function(){  
+  var scrollTop = $(window).scrollTop();  
+         
+  if (scrollTop > stickyNavTop) {   
+      $('nav').addClass('sticky');  
+  } else {  
+      $('nav').removeClass('sticky');   
+  }  
+  };  
+    
+  stickyNav();  
+    
+  $(window).scroll(function() {  
+      stickyNav();  
+  });  
+  });  
+</script>
+
+
+</body>
+</html>
