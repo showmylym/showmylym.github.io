@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>GithubPage页面国内打开缓慢的问题 - 电一闪的博客</title>
+  <meta name="author" content="雷一鸣-Jerry">
+
+  
+  <meta name="description" content="　　其实早在两年前，我在博客园创建过个人博客，零零散散写了些很业余的东西，没有系统性地写，与编程也没有太大关系，没能坚持。在最近的工作中，有了分享意识，并且发现一个知识点如果能够给别人讲懂，知识点会融入进自己的知识体系，理解程度会有质的变化。因此决定重新做一个专业的博客，一来给自己总结， &hellip;">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://showmylym.github.io/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="电一闪的博客" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+<!--注释掉在线获取jquery的语句，为了在国内稳定打开页面-->
+  <!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"--><!--/script-->
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!--这两个资源URL在国内访问不稳定，因此从本地调用 -->
+<!-- link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,700' rel='stylesheet' type='text/css' -->
+<!-- link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' -->
+
+  <link href="/stylesheets/noto_serif.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/open_sans.css" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">电一闪的博客</a></h1>
+  
+    <h2>沉默是金</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  
+  
+</ul>
+
+<ul class="main-navigation">
+  <li><a href="/">最近博客</a></li>
+  <li><a href="/blog/archives">博客列表</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">GithubPage页面国内打开缓慢的问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-29T12:23:23+08:00" pubdate data-updated="true"></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://showmylym.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>　　其实早在两年前，我在<a href="http://www.cnblogs.com/showmylym" title="博客园">博客园</a>创建过个人博客，零零散散写了些很业余的东西，没有系统性地写，与编程也没有太大关系，没能坚持。在最近的工作中，有了分享意识，并且发现一个知识点如果能够给别人讲懂，知识点会融入进自己的知识体系，理解程度会有质的变化。因此决定重新做一个专业的博客，一来给自己总结，二来可能会帮助到其他人。虽然国内技术博客站不少，但大多都掺杂太多广告，不够纯粹，考虑到平时频繁用到github找代码，遂决定在github上建博客，与自己的开源代码结合。这次一定可以坚持下去:)<br/>
+　　不过一上来就碰到国内打开博客页面慢的问题，且翻墙时灵时不灵。跟了一下页面加载的过程，发现首页有四个链接加载超时，如下图1-1。<br/>
+<img src="/images/1/1-1.png" title="图1-1" alt="图1-1" /><br/>
+图1-1<br/>
+　　Copy出来，四个URL如下：<br/>
+　　<code>https://fonts.googleapis.com/css?family=Open+Sans:400,700</code><br/>
+　　<code>http://platform.twitter.com/widgets.js</code><br/>
+　　<code>http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</code><br/>
+　　<code>https://fonts.googleapis.com/css?family=Noto+Serif:400,700</code><br/>
+　　首先关掉twitter账户关联。按照<a href="http://wenku.baidu.com/view/8a146ba2d0d233d4b14e69ae.html" title="HTML页面的加载过程">HTML页面的加载过程</a>，浏览器首先解析页面结构，再加载外部CSS和script。如果在<code>&lt;head&gt;</code>标签里碰到<code>&lt;script&gt;</code>，则解析页面结构时就会加载脚本。此时若网络延迟较大，会出现长时间的白屏。猜测首页打开缓慢应当是这个原因，因此参考<a href="http://blog.csdn.net/chang_yuan_2011/article/details/7881606" title="不同javascript加载方式对页面性能的影响">不同javascript加载方式对页面性能的影响</a>，首先尝试将script放在body结尾前执行。<br/>
+　　打开octopress博客源代码的source目录，使用grep命令搜索内容中带有&#8221;script&#8221;的文件(i为忽略大小写，r为递归查找，l为以文件列表形式显示)。<br/>
+　　<code>grep -irl script | grep htm</code><br/>
+　　搜索结果如下图1-2。<br/>
+<img src="/images/1/1-2.png" title="图1-2" alt="图1-2" /><br/>
+图1-2<br/>
+　　文件有点多，不好找。考虑过后，决定直接搜索图1-1中标红的那几个URL。搜索命令分别为：<br/>
+　　<code>grep -irl jquery | grep htm</code> <br/>
+　　<code>grep -irl https://fonts.googleapis.com/css?family=Noto+Serif:400,700 | grep htm</code> <br/>
+　　<code>grep -irl https://fonts.googleapis.com/css?family=Open+Sans:400,700 | grep htm</code> <br/>
+　　根据结果了解到，调用这三条URL的执行语句，在<em>includes/head.html和</em>includes/custom/head.html中，对其做如下图1-3和图1-4的修改。<br/>
+<img src="/images/1/1-3.png" title="图1-3" alt="图1-3" /><br/>
+图1-3<br/>
+<img src="/images/1/1-4.png" title="图1-4" alt="图1-4" /><br/>
+图1-4<br/>
+　　修改完毕刷新页面。页面显示很快，但在Chrome的网络控制台上，显示还有4个URL访问缓慢，如下图1-5。<br/>
+<img src="/images/1/1-5.png" title="图1-5" alt="图1-5" /><br/>
+图1-5<br/>
+　　继续搜索关键字&#8221;gstatic&#8221;<br/>
+　　<code>grep -irl gstatic</code><br/>
+　　搜索结果如下图1-6<br/>
+<img src="/images/1/1-6.png" title="图1-6" alt="图1-6" /><br/>
+图1-6<br/>
+　　打开这两个刚刚创建的css样式文件，很明显可以看到其引用了不少gstatic.com上存储的woff2格式的web开放字体文件。目前还没发觉其对页面显示有何影响，花点时间将它们定位到本地吧。<br/>
+　　哈哈，问题到此已解决，打开首页显示速度快多了:)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">雷一鸣-Jerry</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-29T12:23:23+08:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/web/'>web</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/25/di-yi-pian-the-first-one/" title="Previous Post: 第一篇-The first one">&laquo; 第一篇-The first one</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/01/06/tu-biao-guan-li-kong-jian-de-shi-xian-lei-si-yu-ioszhu-ye-de-xiao-guo/" title="Next Post: 图标管理控件的实现-类似于iOS主页的效果">图标管理控件的实现-类似于iOS主页的效果 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+  <aside class="sidebar">
+   
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:showmylym.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Google一下(可能被墙)"/>
+  </fieldset>
+</form>
+  
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/06/tu-biao-guan-li-kong-jian-de-shi-xian-lei-si-yu-ioszhu-ye-de-xiao-guo/">图标管理控件的实现-类似于iOS主页的效果</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti/">GithubPage页面国内打开缓慢的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/di-yi-pian-the-first-one/">第一篇-the First One</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - 雷一鸣-Jerry -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'showmylym';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://showmylym.github.io/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti/';
+        var disqus_url = 'http://showmylym.github.io/blog/2014/11/29/githubpageye-mian-guo-nei-da-kai-huan-man-de-wen-ti/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {  
+  var stickyNavTop = $('nav').offset().top;  
+    
+  var stickyNav = function(){  
+  var scrollTop = $(window).scrollTop();  
+         
+  if (scrollTop > stickyNavTop) {   
+      $('nav').addClass('sticky');  
+  } else {  
+      $('nav').removeClass('sticky');   
+  }  
+  };  
+    
+  stickyNav();  
+    
+  $(window).scroll(function() {  
+      stickyNav();  
+  });  
+  });  
+</script>
+
+
+</body>
+</html>
