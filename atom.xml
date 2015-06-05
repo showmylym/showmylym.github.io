@@ -4,7 +4,7 @@
   <title><![CDATA[电一闪的博客]]></title>
   <link href="http://showmylym.github.io/atom.xml" rel="self"/>
   <link href="http://showmylym.github.io/"/>
-  <updated>2015-06-05T21:21:13+08:00</updated>
+  <updated>2015-06-05T23:01:28+08:00</updated>
   <id>http://showmylym.github.io/</id>
   <author>
     <name><![CDATA[雷一鸣(Jerry)]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[App日志查看器]]></title>
+    <link href="http://showmylym.github.io/blog/2015/06/05/testDateTime/"/>
+    <updated>2015-06-05T21:52:12+08:00</updated>
+    <id>http://showmylym.github.io/blog/2015/06/05/testDateTime</id>
+    <content type="html"><![CDATA[<p>This is a test blog.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[App日志查看器]]></title>
