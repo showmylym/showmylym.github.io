@@ -227,7 +227,7 @@ someFuncForTestClosure {
 
 <p>　　4、swift中，可变类型和常量类型用关键字声明区分，var代表变量，let代表常量。而原来OC中使用两种类NSXXX和NSMutableXXX定义是否可变。<br/>
 <img src="http://showmylym-blog.oss-cn-shenzhen.aliyuncs.com/5%2F6.png"><br/>
-　　5、swift三种元类型在修改self值时的区别。其中class修改self或实例属性最简单，其余两种都需要将关键字mutating作为方法前缀才能实现。</p>
+　　5、swift三种元类型在修改self值时的区别。其中class修改self或实例属性最简单；struct需要将关键字mutating作为方法前缀才能实现；enum枚举无法实现，因其无法定义存储型变量，只能定义case。</p>
 
 <pre><code>//class类
 class Point {
@@ -265,9 +265,9 @@ somePoint_struct.moveByX(2.0, y: 3.0)
 println("The point is now at (\(somePoint_struct.x), \(somePoint_struct.y))")
 // 输出 "The point is now at (3.0, 4.0)"
 
-//枚举
+//枚举，无法实现
 enum Point_enum {
-    //error：枚举定义不能包含存储属性
+    //报错：枚举定义不能包含存储属性
     var x = 0.0, y = 0.0
     mutating func moveByX(deltaX: Double, y deltaY: Double) {
         self.x += deltaX
@@ -278,10 +278,6 @@ enum Point_enum {
         self.y = y
     }
 }
-var somePoint_enum = Point_enum(x: 1.0, y: 1.0)
-somePoint_enum.moveByX(2.0, y: 3.0)
-println("The point is now at (\(somePoint_enum.x), \(somePoint_enum.y))")
-// 输出 "The point is now at (3.0, 4.0)"
 </code></pre>
 </div>
   
